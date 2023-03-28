@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<data>
+    <xpath expr="/form/field[@name='active']" position="after">
+        <label name="account_pty_type"/>
+	<field name="account_pty_type"/>
+    </xpath>
+</data>

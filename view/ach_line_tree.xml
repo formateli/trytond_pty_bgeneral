@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- This file is part of pty_bgeneral module.
+The COPYRIGHT file at the top level of this repository contains
+the full copyright notices and license terms. -->
+<tree>
+    <field name="ach"/>
+    <field name="party"/>
+    <field name="bank_account"/>
+    <field name="amount"/>
+    <field name="description"/>
+</tree>
