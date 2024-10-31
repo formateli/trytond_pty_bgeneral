@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- This file is part of pty_bgeneral module.
+The COPYRIGHT file at the top level of this repository contains
+the full copyright notices and license terms. -->
+<tree>
+    <field name="date"/>
+    <field name="reference"/>
+    <field name="description"/>
+    <field name="total_amount"/>
+    <field name="total_count"/>
+    <field name="state"/>
+</tree>
+

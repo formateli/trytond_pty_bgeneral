@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!-- This file is part of pty_bgeneral module.
+     The COPYRIGHT file at the top level of this repository contains
+     the full copyright notices and license terms. -->
+<tryton>
+    <data>
+	<!-- Ach -->
+
+        <record model="res.group" id="group_bgeneral_ach">
+            <field name="name">Ach Banco General</field>
+        </record>
+        <record model="res.user-res.group"
+            id="user_admin_group_bgeneral_ach">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="group_bgeneral_ach"/>
+        </record>
+
+        <record model="ir.ui.view" id="ach_view_form">
+            <field name="model">bank.bgeneral.ach</field>
+            <field name="type">form</field>
+            <field name="name">ach_form</field>
+        </record>
+        <record model="ir.ui.view" id="ach_view_tree">
+            <field name="model">bank.bgeneral.ach</field>
+            <field name="type">tree</field>
+            <field name="name">ach_tree</field>
+        </record>
+        <record model="ir.action.act_window" id="act_ach_form">
+            <field name="name">Ach</field>
+            <field name="res_model">bank.bgeneral.ach</field>
+            <field name="search_value"></field>
+        </record>
+        <record model="ir.action.act_window.view"
+                id="act_ach_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="ach_view_tree"/>
+            <field name="act_window" ref="act_ach_form"/>
+        </record>
+        <record model="ir.action.act_window.view"
+                id="act_ach_form_view2">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="ach_view_form"/>
+            <field name="act_window" ref="act_ach_form"/>
+        </record>
+
+        <record model="ir.action.act_window.domain" id="act_ach_form_domain_draft">
+            <field name="name">Draft</field>
+            <field name="sequence" eval="10"/>
+            <field name="domain"
+                eval="[('state', '=', 'draft'), ('company', If( And (Eval('context', {}).contains('company'), Eval('context', {}).get('company', None) != None), '=', '!=') , Eval('context', {}).get('company', -1))]"
+                pyson="1"/>
+            <field name="count" eval="True"/>
+            <field name="act_window" ref="act_ach_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_ach_form_domain_confirmed">
+            <field name="name">Confirmed</field>
+            <field name="sequence" eval="30"/>
+            <field name="domain"
+                eval="[('state', '=', 'confirmed'), ('company', If( And (Eval('context', {}).contains('company'), Eval('context', {}).get('company', None) != None), '=', '!=') , Eval('context', {}).get('company', -1))]"
+                pyson="1"/>
+            <field name="act_window" ref="act_ach_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_ach_form_domain_cancel">
+            <field name="name">Cancel</field>
+            <field name="sequence" eval="20"/>
+            <field name="domain"
+                eval="[('state', '=', 'cancel'), ('company', If( And (Eval('context', {}).contains('company'), Eval('context', {}).get('company', None) != None), '=', '!=') , Eval('context', {}).get('company', -1))]"
+                pyson="1"/>
+            <field name="count" eval="True"/>
+            <field name="act_window" ref="act_ach_form"/>
+        </record>
+
+        <menuitem parent="menu_bank_bgeneral" sequence="10"
+		action="act_ach_form" id="menu_ach_form"/>
+        <record model="ir.ui.menu-res.group"
+            id="menu_ach_form_group_bgeneral_ach">
+            <field name="menu" ref="menu_ach_form"/>
+            <field name="group" ref="group_bgeneral_ach"/>
+        </record>
+
+        <record model="ir.ui.view" id="ach_line_view_form">
+            <field name="model">bank.bgeneral.ach.line</field>
+            <field name="type">form</field>
+            <field name="name">ach_line_form</field>
+        </record>
+        <record model="ir.ui.view" id="ach_line_view_tree">
+            <field name="model">bank.bgeneral.ach.line</field>
+            <field name="type">tree</field>
+            <field name="name">ach_line_tree</field>
+        </record>
+
+        <record model="ir.model.access" id="access_ach">
+            <field name="model" search="[('model', '=', 'bank.bgeneral.ach')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_ach_group_bgeneral_ach">
+            <field name="model" search="[('model', '=', 'bank.bgeneral.ach')]"/>
+            <field name="group" ref="group_bgeneral_ach"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="access_ach_line">
+            <field name="model" search="[('model', '=', 'bank.bgeneral.ach.line')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_ach_line_group_bgeneral_ach">
+            <field name="model" search="[('model', '=', 'bank.bgeneral.ach.line')]"/>
+            <field name="group" ref="group_bgeneral_ach"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+
+	<!-- Ach File -->
+
+        <record model="ir.action.report" id="report_ach_file">
+	    <field name="name">Ach File</field>
+	    <field name="model">bank.bgeneral.ach</field>
+            <field name="report_name">bank.bgeneral.ach_file</field>
+            <field name="report">pty_bgeneral/report/ach_file.xml</field>
+            <field name="template_extension">xml</field>
+            <field name="extension">csv</field>
+        </record>
+
+        <record model="ir.action.keyword" id="report_ach_file_print">
+            <field name="keyword">form_print</field>
+            <field name="model">bank.bgeneral.ach,-1</field>
+            <field name="action" ref="report_ach_file"/>
+        </record>
+
+    </data>
+</tryton>
