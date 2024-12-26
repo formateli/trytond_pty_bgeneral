@@ -90,14 +90,14 @@
         </record>
 
         <record model="ir.model.access" id="access_ach">
-            <field name="model" search="[('model', '=', 'bank.bgeneral.ach')]"/>
+	    <field name="model">bank.bgeneral.ach</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_ach_group_bgeneral_ach">
-            <field name="model" search="[('model', '=', 'bank.bgeneral.ach')]"/>
+	    <field name="model">bank.bgeneral.ach</field>
             <field name="group" ref="group_bgeneral_ach"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
@@ -106,14 +106,14 @@
         </record>
 
         <record model="ir.model.access" id="access_ach_line">
-            <field name="model" search="[('model', '=', 'bank.bgeneral.ach.line')]"/>
+	    <field name="model">bank.bgeneral.ach.line</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_create" eval="False"/>
             <field name="perm_delete" eval="False"/>
         </record>
         <record model="ir.model.access" id="access_ach_line_group_bgeneral_ach">
-            <field name="model" search="[('model', '=', 'bank.bgeneral.ach.line')]"/>
+	    <field name="model">bank.bgeneral.ach.line</field>
             <field name="group" ref="group_bgeneral_ach"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="True"/>
